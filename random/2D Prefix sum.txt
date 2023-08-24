@@ -1,0 +1,38 @@
+// Source: https://usaco.guide/general/io
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+   int n;
+   cin>>n;
+   int a[n][n];
+   for(int i=0;i<n;i++){
+       for(int j=0;j<n;j++){
+           cin>>a[i][j];
+       }
+   }
+     vector<vector<int>> csum(n, vector<int>(n));
+   csum[0][0]=a[0][0];
+   for(int col_row=1;col_row<n;col_row++){
+      csum[col_row][0]=csum[col_row-1][0]+a[col_row][0];
+   }
+   
+   for(int col_cl=1;col_cl<n;col_cl++){
+       csum[0][col_cl]=csum[0][col_cl-1]+a[0][col_cl];
+   }
+   for(int col_row=1;col_row<n;col_row++){
+       for(int col_cl=1;col_cl<n;col_cl++){
+           csum[col_row][col_cl]=csum[col_row][col_cl-1]+csum[col_row-1][col_cl]+a[col_row][col_cl]-csum[col_row-1][col_cl-1];
+                 }
+   }
+    for(int i=0;i<n;i++){
+       for(int j=0;j<n;j++){
+       cout<<csum[i][j]<<" ";
+        }
+        cout<<endl;
+   }
+}
+   
+   
+   
