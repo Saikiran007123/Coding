@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+int main(){
+    ll sum=0;
+    ll n=8;
+    ll k=5;
+    ll i=1,answer=-1e18;
+    unordered_map<ll,ll>um;
+    while(i<=n){
+        ll yy; cin>>yy;
+        if(um.find(yy)==um.end()){
+            um[yy]=sum;
+        }
+        if(um.find(yy+k)!=um.end()){
+            ll gg=sum+yy-um[yy+k];
+            answer=max(answer,gg);
+            um[gg]=min(um[yy],sum);
+        }
+        if(um.find(yy-k)!=um.end()){
+            ll gg=sum+yy-um[yy-k];
+            answer=max(answer,gg);
+            um[yy]=min(um[yy],sum);
+        }
+        sum=sum+yy;
+        
+        i++;
+    }
+    if(answer==-1e18)
+    {
+        answer=0;
+    }
+    cout<<answer<<endl;
+    return 0;
+}
