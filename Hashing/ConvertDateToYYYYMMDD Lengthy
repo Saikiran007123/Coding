@@ -1,0 +1,141 @@
+#include<bits/stdc++.h>
+#include <iostream> 
+class Solution {
+public:
+    string reformatDate(string date) {
+        unordered_map<string,string>um;
+        um[" Jan"]="01";
+        um[" Feb"]="02";
+        um[" Mar"]="03";
+        um[" Apr"]="04";
+        um[" May"]="05";
+        um[" Jun"]="06";
+        um[" Jul"]="07";
+        um[" Aug"]="08";
+        um[" Sep"]="09";
+        um[" Oct"]="10";
+        um[" Nov"]="11";
+        um[" Dec"]="12";
+        vector<string>v;
+        string k="";
+        //cout<<date.size()<<endl;
+        for(int i=0;i<date.size();i++){
+            if(date[i]==' '){
+                v.push_back(k);
+                //cout<<k<<endl;
+                k="";
+            }
+            k=k+date[i];
+            //cout<<k<<endl;
+        }
+        
+        v.push_back(k);
+        for(int i=0;i<v.size();i++){
+            //cout<<v[i];
+        }
+        string b="";
+     string b1=v[1];
+     //cout<<b1<<endl;
+     for(int i=0;i<v.size();i++){
+     //cout<<v[i]<<endl;
+     }
+
+     b=v[2]+" "+um[b1]+" "+v[0];
+     //cout<<um[b1]<<endl;
+     int pos = b.find("th");
+     string ans=b.substr(0,pos);
+     ans.replace(0,1,"");
+
+
+     int pos1 = b.find("nd");
+     string place1=b.substr(0,pos1);
+     place1.replace(0,1,"");
+
+     
+     int pos2 = b.find("rd");
+     string place2=b.substr(0,pos2);
+     place2.replace(0,1,"");
+
+      
+    int pos3 = b.find("st");
+     string place3=b.substr(0,pos3);
+     place3.replace(0,1,"");
+
+     if(pos1>0){
+         ans=place1;
+     }
+
+     if(pos2>0){
+         ans=place2;
+     }
+
+     if(pos3>0){
+         ans=place3;
+     }
+
+     cout<<place1<<endl;
+     string def="";
+     vector<string>v1;
+     string k1="";
+     for(int i=0;i<ans.size();i++){
+            if(ans[i]==' '){
+                v1.push_back(k1);
+                //cout<<k<<endl;
+                k1="";
+            }
+            k1=k1+ans[i];
+            //cout<<k<<endl;
+        }
+        v1.push_back(k1);
+        string c=v1[2];
+        string b2="0";
+        for(int i=0;i<c.size();i++){
+            if(stoi(c)<10){
+            b2=b2+c[i];
+            }
+            else{
+                b2=b2+c[i];
+            }
+        }
+
+        //cout<<b2<<endl;
+        string b3="";
+    if(stoi(b2)<10){
+        for(int i=0;i<b2.size();i++){
+          if(b2[i]!=' '){
+              b3=b3+b2[i];
+          }
+    }
+    }
+    else{
+        cout<<b2<<endl;
+      for(int i=0;i<b2.size();i++){
+          if(b2[i]!='0'){
+              b3=b3+b2[i];
+          }
+    }
+    cout<<b3<<endl;
+    }
+    
+    v1[2]=b3;
+    //cout<<v1[2]<<endl;
+    //cout<<'0'+v1[2]<<endl;
+    string f=v1[2];
+    string f1="";
+    if(stoi(f)>=10){
+    for(int i=1;i<f.size();i++){
+        f1=f1+f[i];
+    }
+    v1[2]=f1;
+    }
+    string ans2=v1[0]+"-"+v1[1]+"-"+v1[2];
+    string ans3="";
+    for(int i=0;i<ans2.size();i++){
+        if(ans2[i]!=' '){
+            ans3=ans3+ans2[i];
+        }
+    }
+
+    return ans3;
+    }
+};
