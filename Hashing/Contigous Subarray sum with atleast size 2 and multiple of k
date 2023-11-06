@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool checkSubarraySum(vector<int>& nums, int k) {
+        int presum=0;
+        unordered_map<int,int>um;
+        int ans=1e9;
+        um[0]=-1;
+        vector<int>v;
+        int count=0;
+        for(int i=0;i<nums.size();i++){
+            presum+=nums[i];
+            int rem=presum%k;
+            if(um.find(rem)!=um.end()){
+                if(i-um[rem]>=2){
+                count++;
+                }
+            }
+            else{
+                  um[rem]=i;
+            }
+        }
+    if(count>0){
+        return true;
+    }
+    return false;
+    }
+};
