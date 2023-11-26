@@ -1,0 +1,17 @@
+long long int longestSubarry(long long int A[], long long int n) {
+    int i=0,j=0,len=0,ans=0;
+    while(i<n){
+        if(A[i]<0){
+            ans=max(len,ans);
+            len=0;
+        }
+        else{
+        len++;
+        }
+        
+       i++;
+    }
+    
+     ans=max(ans,len);
+    return ans;
+}
