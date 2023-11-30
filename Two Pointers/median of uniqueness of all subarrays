@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long int ll; 
+
+ll count(ll b[],ll n,ll k){
+    ll i = 1 ; 
+    ll j = 1 ;
+    ll r = 0 ; 
+    unordered_map <ll,ll> kk ;
+    kk[b[1]]++;
+    while(j<=n){
+        
+        ll v = kk.size();
+        if(v<=k){
+            ll l = abs(i-j) + 1  ; 
+            r = r + l ; 
+            j++;
+            kk[b[j]]++;
+        }
+        else{
+            kk[b[i]]--;
+            if(kk[b[i]]==0){
+                kk.erase(b[i]);
+            }
+            i++;
+        }
+    }
+    return r ; 
+}
+int main() {
+    
+    ll n ;
+    cin>>n ; 
+    ll b[n+1] = {0};
+    ll i = 1 ;
+    while(i<=n){
+        cin>>b[i];
+        i++;
+    }    
+    ll tot = n*(n+1)/2;
+    ll r = 0 ;
+    i = 1 ; 
+    while(i<=n){
+        ll v; 
+        
+        if(tot%2==0){
+            v = tot/2 ; 
+        }
+        else{
+            v = tot/2 + 1 ; 
+        }
+        
+        if(count(b,n,i)<v && count(b,n,i+1)>=v){
+            r = i + 1 ; 
+            break ; 
+        }
+        else if(count(b,n,i)>=v && count(b,n,i+1)>=v){
+            r = i ; 
+            break ;
+        }
+        
+        
+        i++;
+    }
+    cout<<r ; 
+    return 0 ; 
+}
