@@ -1,0 +1,26 @@
+class Solution{
+  public:
+    vector<int> printClosest(int arr[], int brr[], int n, int m, int x) {
+        //code here
+        int i=0;
+        int j=m-1;
+        vector<int>v;
+        int minans=INT_MAX;
+        while(i<n && j>=0){
+            int currentsum=arr[i]+brr[j];
+            if(abs(arr[i]+brr[j]-x)<minans){
+                    minans=abs(arr[i]+brr[j]-x);
+                    v.clear();
+                    v.push_back(arr[i]);
+                    v.push_back(brr[j]);
+                }
+            if(currentsum>x){
+                j--;
+            }
+            else{
+                i++;
+            }
+        }
+        return v;
+    }
+};
