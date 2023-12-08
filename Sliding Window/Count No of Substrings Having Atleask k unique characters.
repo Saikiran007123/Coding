@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int findSubstrCnt(string s,int k){
+    int ans=0;
+    unordered_map<char,int>mpp;
+    int i=0,j=0,n=s.size();
+    while(j<n){
+        mpp[s[j]]++;
+        j++;
+        while(mpp.size()>=k){
+            mpp[s[i]]--;
+            if(mpp[s[i]]==0){
+                mpp.erase(s[i]);
+            }
+            ans+=n - j + 1;
+            i++;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    string s;
+    int k;
+    cin>>s;
+    cin>>k;
+    cout<<findSubstrCnt(s,k)<<endl;
+}
